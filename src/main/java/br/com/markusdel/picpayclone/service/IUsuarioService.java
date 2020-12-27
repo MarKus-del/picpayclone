@@ -10,11 +10,12 @@ public interface IUsuarioService {
 
     Usuario consultarEntidade(String login);
 
-    void validar(Usuario... usuarios);
-
-    void atualizarSaldo(Transacao transacao, Boolean isCartaoCredito);
-
     UsuarioDTO consultar(String login);
 
+    void atualizarSaldo(Transacao transacaoSalva, Boolean isCartaoCredito);
+
+    void validar(Usuario... usuarios);
+
     List<UsuarioDTO> listar(String login);
+
 }

@@ -37,7 +37,7 @@ public class TransacaoService implements ITransacaoService {
 
     @Override
     public Page<TransacaoDTO> listar(Pageable paginacao, String login) {
-        Page<Transacao> transacaos = transacaoRepository.fingByOrigen_LoginOrDestinoLogin(login, login, paginacao);
+        Page<Transacao> transacaos = transacaoRepository.findByOrigem_LoginOrDestino_Login(login, login, paginacao);
         return transacaoConversor.converterPageEntidadeParaDto(transacaos);
     }
 

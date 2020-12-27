@@ -7,7 +7,9 @@ import br.com.markusdel.picpayclone.repository.CartaoCreditoRepository;
 import br.com.markusdel.picpayclone.service.ICartaoCreditoService;
 import br.com.markusdel.picpayclone.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CartaoCreditoService implements ICartaoCreditoService {
     @Autowired
     private CartaoCreditoRepository cartaoCreditoRepository;

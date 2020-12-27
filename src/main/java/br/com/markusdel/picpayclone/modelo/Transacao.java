@@ -14,6 +14,8 @@ import java.time.LocalDateTime;
 @Table(name = "TRANSACOES")
 public class Transacao extends EntidadeBase{
 
+    private static final long serialVersionUID = 1L;
+
     @Column(name="TR_CODIGO", nullable = false)
     private String codigo;
 

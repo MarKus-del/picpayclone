@@ -1,4 +1,4 @@
-package br.com.markusdel.picpayclone;
+package br.com.markusdel.picpayclone.configuracao;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

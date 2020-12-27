@@ -1,9 +1,15 @@
 package br.com.markusdel.picpayclone.modelo;
 
+import br.com.markusdel.picpayclone.enums.TipoPermissao;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 @Data
@@ -12,8 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 @Entity
-@Table(name = "USUARIO")
-public class Usuario extends EntidadeBase{
+@Table(name = "USUARIOS")
+public class Usuario extends EntidadeBase implements UserDetails {
+
+    private static final long serialVersionUID = 1L;
 
     @Column(name = "USU_LOGIN", nullable = false)
     private String login;
@@ -45,4 +53,43 @@ public class Usuario extends EntidadeBase{
     @Column(name = "USU_ATIVO", nullable = false)
     private Boolean ativo;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "USU_PERMISSAO", nullable = false)
+    private TipoPermissao permissao;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> listaAutorizacoes = Arrays.asList(new SimpleGrantedAuthority(permissao.getCodigo()));
+        return listaAutorizacoes;
+    }
+
+    @Override
+    public String getPassword() {
+        return senha;
+    }
+
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return this.ativo;
+    }
 }

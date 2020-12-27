@@ -3,12 +3,12 @@ spring:
     name: picpay_clone
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc://localhost:54327/picpay_clone
-    usename: postgres
-    password: Postgres2019!
+    url: jdbc:postgresql://localhost:5432/picpay_clone
+    username: picpay
+    password: picpay
     initialization-mode: always
   api:
-    version: 1.0.0
+    versao: 1.0.0
 # Jpa properties
   jpa:
     hibernate:
@@ -17,3 +17,13 @@ spring:
     database: postgresql
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     format-sql: true
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+picpayclone:
+  jwt:
+    expiration: 86400000
+    secret: A+X;fTJP&Pd,TD9dwVq(hsHX,ya^<wsD_UK7L+@=S;{'CydP]{v@}G'b>et;yz$*\yL5S8EJN:%P:X%H9>#nYLrX}@\s?CQcpspH,2emzBc!Q[V'AYa~uzF8WR~AUrMzxp/V$9([S9X#zj/CH('#]B_Hc+%fGhe27YB;^j4\Xk=Ju"Ap~_&<L;=!Z;!,2UP;!hF3P]j85#*`&T]/kB/W^6$v~u6qpejL>kY^f)sy4:qTq_Ec!-z!@aAp~sLKGU>$
+

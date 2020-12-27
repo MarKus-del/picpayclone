@@ -10,6 +10,7 @@ import br.com.markusdel.picpayclone.service.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,6 +26,7 @@ public class UsuarioService implements IUsuarioService {
     private UsuarioConversor usuarioConversor;
 
     @Override
+    @Transactional
     public Usuario consultarEntidade(String login) {
         return usuarioRepository.findByLogin(login);
     }
@@ -40,6 +42,7 @@ public class UsuarioService implements IUsuarioService {
 
     @Override
     @Async("asyncExecutor")
+    @Transactional
     public void atualizarSaldo(Transacao transacao, Boolean isCartaoCredito) {
         decrementarSaldo(transacao, isCartaoCredito);
         incrementarSaldo(transacao);
